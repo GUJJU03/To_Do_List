@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practise For List | JS</title>
+</head>
+<style>
+    .container{
+       display: flex;
+       margin: 20px;
+    }
+</style>
+<body>
+    <div class="Container">
+        <input id="input" type="text" placeholder="Add Items">
+        <button id="btn" style="background-color: rgb(139, 204, 42); border-radius: 10px;">Add</button>
+    </div>
+
+    <ul id="ParentUi">
+        <li><h3>Added Items</h3></li>
+    </ul>
+   
+</body>
+<script>
+    let btn = document.getElementById("btn")
+    let ParentUi = document.getElementById("ParentUi")
+
+    btn.addEventListener('click',AddItem)
+
+    function AddItem (e){
+       let Currentbtn = e.currentTarget;
+       let CurrentIp=Currentbtn.previousElementSibling
+       console.log(CurrentIp.value)
+       let CurrentItemName = CurrentIp.value
+
+       let newLiItem = document.createElement('li')
+       newLiItem.className='';
+       newLiItem.innerHTML=` <li><h3>${CurrentItemName}</h3></li>`
+
+       ParentUi.appendChild(newLiItem)
+    }
+
+</script>
+</html>

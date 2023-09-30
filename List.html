@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO DO LIST | JS EXERCISE</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<style>
+    h4 {
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                        </a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container mt-5">
+            <div class="input-group-append">
+                <input type="text" class="form-control" placeholder="Add Items" width="auto">
+                <button id="btn" class="btn btn-outline-info" type="button" id="button-addon2">Add</button>
+            </div>
+
+            <div class="input-group mb-3">
+            </div>
+
+            <ul class="list-group" id="Parent">
+
+                <li class="list-group-item d-flex justify-content-between mt-2 ">
+                    <h5 class="flex-grow-1">Please Add The Items </h5>
+                    <button class="btn btn-danger mr-2" onclick="RemoveItem(this)">Remove</button>
+                    <button class="btn btn-success" onclick="EditItem(this)">Edit</button>
+                </li>
+
+            </ul>
+        </div>
+    </main>
+
+    <script>
+        let addbtn = document.getElementById('btn')
+        addbtn.addEventListener('click', Additems)
+        let ParentUi = document.getElementById('Parent');
+        ParentUi.addEventListener('click', function (event) {
+            let target = event.target;
+
+            if (target.classList.contains('btn-danger')) {
+                RemoveItem(target);
+            } else if (target.classList.contains('btn-success') || target.textContent === "Done") {
+                EditItem(target);
+            }
+        });
+
+        function Additems(e) {
+            if (ParentUi.children[0].className == "DefaultMtMsg") {
+                ParentUi.children[0].remove();
+            }
+            // console.log(e)
+            let currentbtn = e.currentTarget;
+            let currentIP = currentbtn.previousElementSibling
+            console.log(currentIP.value)
+            let CurrentItemName = currentIP.value
+
+
+            let newLi = document.createElement('li')
+            // newLi.classList.add('list-group-item d-flex justify-content-between mt-2')
+            newLi.className = 'list-group-item d-flex justify-content-between mt-2'
+            newLi.innerHTML = `<h5 class="flex-grow-1">${CurrentItemName}</h5>
+                   <button class="btn btn-danger mr-2" onclick="RemoveItem(this)">Remove</button>
+                   <button class="btn btn-success">Edit</button>`
+
+
+            ParentUi.appendChild(newLi)
+
+
+        }
+        
+        function RemoveItem(CurrentElement) {
+            CurrentElement.parentElement.remove()
+            let ParentUi = document.getElementById('Parent');
+
+            if (ParentUi.children.length <= 0) {
+                let EmptyMsg = document.createElement("h4")
+                EmptyMsg.textContent = "Nothing Is here. Please Add Items !!";
+                EmptyMsg.classList.add("DefaultMtMsg")
+                ParentUi.appendChild(EmptyMsg)
+            }
+        }
+        
+
+        function EditItem(CurrentElement) {
+            if (CurrentElement.textContent === "Done") {
+                let CurrItemName = CurrentElement.previousElementSibling.previousElementSibling.value
+                let CurrHeading = document.createElement('h3')
+                CurrHeading.className = "flex-grow-1"
+                CurrHeading.placeholder = "Item Name"
+                CurrHeading.textContent = CurrItemName
+                CurrentElement.textContent = "Edit"
+                CurrentElement.parentElement.replaceChild(CurrHeading, CurrentElement.previousElementSibling.previousElementSibling)
+            }
+            else {
+                CurrentElement.textContent = "Done"
+                const CurrItemName = CurrentElement.previousElementSibling.previousElementSibling.textContent
+                const CurrInput = document.createElement("input")
+                CurrInput.type = "text"
+                CurrInput.placeholder = "Item Name"
+                CurrInput.className = "form-control"
+                CurrInput.value = CurrItemName
+
+                CurrentElement.parentElement.replaceChild(CurrInput, CurrentElement.previousElementSibling.previousElementSibling)
+
+
+            }
+
+
+
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>
