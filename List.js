@@ -27,7 +27,7 @@ let addbtn = document.getElementById('btn')
             newLi.className = 'list-group-item d-flex justify-content-between mt-2'
             newLi.innerHTML = `<h5 class="flex-grow-1">${CurrentItemName}</h5>
                    <button class="btn btn-danger mr-2" onclick="RemoveItem(this)">Remove</button>
-                   <button class="btn btn-success">Edit</button>`
+                   <button class="btn btn-success">Edit Item</button>`
 
 
             ParentUi.appendChild(newLi)
