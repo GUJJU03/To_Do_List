@@ -12,28 +12,33 @@ let addbtn = document.getElementById('btn')
         });
 
         function Additems(e) {
+            let currentbtn = e.currentTarget;
+            let currentIP = currentbtn.previousElementSibling
+            let CurrentItemName = currentIP.value.trim()
+
+            if(CurrentItemName===""){
+                alert("Please Add item First there is nothing in itembox");
+                return ;
+            }
+            currentIP.value = "";
+        
             if (ParentUi.children[0].className == "DefaultMtMsg") {
                 ParentUi.children[0].remove();
             }
+
             // console.log(e)
-            let currentbtn = e.currentTarget;
-            let currentIP = currentbtn.previousElementSibling
-            console.log(currentIP.value)
-            let CurrentItemName = currentIP.value
-
-
             let newLi = document.createElement('li')
             // newLi.classList.add('list-group-item d-flex justify-content-between mt-2')
             newLi.className = 'list-group-item d-flex justify-content-between mt-2'
             newLi.innerHTML = `<h5 class="flex-grow-1">${CurrentItemName}</h5>
-                   <button class="btn btn-danger mr-2" onclick="RemoveItem(this)">Remove</button>
-                   <button class="btn btn-success">Edit Item</button>`
-
-
+            <button class="btn btn-danger mr-2" onclick="RemoveItem(this)">Remove</button>
+            <button class="btn btn-success">Edit</button>`
+            
             ParentUi.appendChild(newLi)
-
-
+             
         }
+
+            
         
         function RemoveItem(CurrentElement) {
             CurrentElement.parentElement.remove()
