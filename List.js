@@ -1,84 +1,68 @@
-let addbtn = document.getElementById('btn')
-        addbtn.addEventListener('click', Additems)
-        let ParentUi = document.getElementById('Parent');
-        ParentUi.addEventListener('click', function (event) {
-            let target = event.target;
+const addBtn = document.getElementById("btn");
+addBtn.addEventListener("click", AddItems);
 
-            if (target.classList.contains('btn-danger')) {
-                RemoveItem(target);
-            } else if (target.classList.contains('btn-success') || target.textContent === "Done") {
-                EditItem(target);
-            }
-        });
+const inputBox = document.getElementById("input-box");
 
-        function Additems(e) {
-            let currentbtn = e.currentTarget;
-            let currentIP = currentbtn.previousElementSibling
-            let CurrentItemName = currentIP.value.trim()
+inputBox.addEventListener("keypress", function(event) {
+    if (event.key === 'Enter') {
+        AddItems();
+    }
+});
 
-            if(CurrentItemName===""){
-                alert("Please Add item First there is nothing in itembox");
-                return ;
-            }
-            currentIP.value = "";
-        
-            if (ParentUi.children[0].className == "DefaultMtMsg") {
-                ParentUi.children[0].remove();
-            }
+const ParentUi = document.getElementById("Parent");
+ParentUi.addEventListener("click", function(event) {
+    let target = event.target;
+    if (target.classList.contains("btn-danger")) {
+        RemoveItem(target.parentElement);
+    } else if (target.classList.contains("btn-success")) {
+        EditItem(target.parentElement);
+    }
+});
 
-            // console.log(e)
-            let newLi = document.createElement('li')
-            // newLi.classList.add('list-group-item d-flex justify-content-between mt-2')
-            newLi.className = 'list-group-item d-flex justify-content-between mt-2'
-            newLi.innerHTML = `<h5 class="flex-grow-1">${CurrentItemName}</h5>
-            <button class="btn btn-danger mr-2" onclick="RemoveItem(this)">Remove</button>
-            <button class="btn btn-success">Edit</button>`
-            
-            ParentUi.appendChild(newLi)
-             
-        }
+function AddItems() {
+    let inputElement = document.getElementById("input-box");
+    let itemName = inputElement.value.trim();
 
-            
-        
-        function RemoveItem(CurrentElement) {
-            CurrentElement.parentElement.remove()
-            let ParentUi = document.getElementById('Parent');
+    if (itemName === "") {
+        alert("Please add an item first.");
+        return;
+    }
 
-            if (ParentUi.children.length <= 0) {
-                let EmptyMsg = document.createElement("h4")
-                EmptyMsg.textContent = "Nothing Is here. Please Add Items !!";
-                EmptyMsg.classList.add("DefaultMtMsg")
-                ParentUi.appendChild(EmptyMsg)
-            }
-        }
-        
+    inputElement.value = "";
 
-        function EditItem(CurrentElement) {
-            if (CurrentElement.textContent === "Done") {
-                let CurrItemName = CurrentElement.previousElementSibling.previousElementSibling.value
-                let CurrHeading = document.createElement('h3')
-                CurrHeading.className = "flex-grow-1"
-                CurrHeading.placeholder = "Item Name"
-                CurrHeading.textContent = CurrItemName
-                CurrentElement.textContent = "Edit"
-                CurrentElement.parentElement.replaceChild(CurrHeading, CurrentElement.previousElementSibling.previousElementSibling)
-            }
-            else {
-                CurrentElement.textContent = "Done"
-                const CurrItemName = CurrentElement.previousElementSibling.previousElementSibling.textContent
-                const CurrInput = document.createElement("input")
-                CurrInput.type = "text"
-                CurrInput.placeholder = "Item Name"
-                CurrInput.className = "form-control"
-                CurrInput.value = CurrItemName
+    if (ParentUi.children[0].classList.contains("default-message")) {
+        ParentUi.children[0].remove();
+    }
 
-                CurrentElement.parentElement.replaceChild(CurrInput, CurrentElement.previousElementSibling.previousElementSibling)
+    let newItem = document.createElement("li");
+    newItem.className = "list-group-item d-flex justify-content-between mt-2";
+    newItem.innerHTML = `
+        <h5 class="flex-grow-1">${itemName}</h5>
+        <button class="btn btn-danger mr-2">Remove</button>
+        <button class="btn btn-success">Edit</button>
+    `;
 
+    ParentUi.appendChild(newItem);
+}
 
-            }
+function RemoveItem(itemElement) {
+    itemElement.remove();
+    if (ParentUi.children.length === 0) {
+        displayDefaultMessage("Nothing is here. Please add items!!");
+    }
+}
 
+function EditItem(itemElement) {
+    let itemNameElement = itemElement.querySelector("h5");
+    let newItemName = prompt("Edit item name:", itemNameElement.textContent);
+    if (newItemName !== null && newItemName.trim() !== "") {
+        itemNameElement.textContent = newItemName;
+    }
+}
 
-
-
-        }
-
+function displayDefaultMessage(message) {
+    let defaultMsg = document.createElement("h4");
+    defaultMsg.textContent = message;
+    defaultMsg.classList.add("default-message");
+    ParentUi.appendChild(defaultMsg);
+}
