@@ -13,40 +13,63 @@
         display: flex;
         justify-content: center;
     }
+
+    .Container{
+        background-color: #0069d9;
+        /* height: 50px; */
+        /* padding: 10px; */
+        font-size: 17px;
+        
+    }
+    #ul{
+    }
+    #a{
+        margin-top: 20px;
+        margin-left: 50px;
+        color: white;
+        cursor: pointer;
+    }
+    #SearchBTN{
+        
+        color: white;
+        float:right;
+        margin-right: 50px;
+    }
+
+@keyframes example {
+  0%   {background-color: red;}
+  25%  {background-color: rgb(93, 93, 5);}
+  50%  {background-color: blue;}
+  100% {background-color: green;}
+}
+
+nav {
+  height: 30px;
+ 
+
+}
+
+nav:hover {
+  animation: example 1s infinite alternate-reverse;
+  cursor: pointer;
+}
+
 </style>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown
-                        </a>
-
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
+        <div class="Container">
+            <nav id="NavMain">
+                <ul id="ul">
+                    <a href="#" id="a">Home</a>
+                    <a href="#" id="a">About</a>
+                    <a href="#" id="a">Contact</a>
+                    <a href="#" id="a">Services</a>
+                    <span id="SearchBTN"><a href="#" id="SearchBTN">Search</a></span>
                 </ul>
-
-            </div>
-        </nav>
-    </header>
+            </nav>
+        </div>
+        </header>
 
     <main>
         <div class="container mt-5">
