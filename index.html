@@ -1,99 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TO DO LIST | JS EXERCISE</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TO DO LIST | JS EXERCISE</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel="stylesheet" href="index.css">
 </head>
-<style>
-    h4 {
-        display: flex;
-        justify-content: center;
-    }
-
-    .Container{
-        background-color: #0069d9;
-        /* height: 50px; */
-        /* padding: 10px; */
-        font-size: 17px;
-        
-    }
-    #ul{
-    }
-    #a{
-        margin-top: 20px;
-        margin-left: 50px;
-        color: white;
-        cursor: pointer;
-    }
-    #SearchBTN{
-        
-        color: white;
-        float:right;
-        margin-right: 50px;
-    }
-
-@keyframes example {
-  0%   {background-color: red;}
-  25%  {background-color: rgb(93, 93, 5);}
-  50%  {background-color: blue;}
-  100% {background-color: green;}
-}
-
-nav {
-  height: 30px;
- 
-
-}
-
-nav:hover {
-  animation: example 1s infinite alternate-reverse;
-  cursor: pointer;
-}
-
-</style>
-
 <body>
-    <header>
-        <div class="Container">
-            <nav id="NavMain">
-                <ul id="ul">
-                    <a href="#" id="a">Home</a>
-                    <a href="#" id="a">About</a>
-                    <a href="#" id="a">Contact</a>
-                    <a href="#" id="a">Services</a>
-                    <span id="SearchBTN"><a href="#" id="SearchBTN">Search</a></span>
-                </ul>
-            </nav>
-        </div>
-        </header>
+    <div class="Container">
+      <nav id="NavMain">
+        <ul id="ul">
+          <a href="#" id="a">Home</a>
+          <a href="#" id="a">About</a>
+          <a href="#" id="a">Contact</a>
+          <a href="#" id="a">Services</a>
+          <span id="SearchBTN"><a href="#" id="SearchBTN">Search</a></span>
+        </ul>
+      </nav>
+    </div>
 
-    <main>
-        <div class="container mt-5">
-            <div class="input-group-append">
-                <input type="text" class="form-control" id="input-box" placeholder="Add Items" width="auto">
-                <button id="btn" class="btn btn-primary" type="button" id="button-addon2">Add</button>
-            </div>
+    <div class="first_div">Add Your Todos Only Here</div>
 
-            <div class="input-group mb-3">
-            </div>  
+    <div class="container mt-5">
+      <div class="input-group-append">
+        <input type="text" class="form-control" id="input-box" placeholder="Add Items" width="auto" />
+        <button id="btn" class="btn btn-primary" type="button" id="button-addon2">
+          Add
+        </button>
+      </div>
 
-            <ul class="list-group" id="Parent">
+      <ul class="list-group" id="Parent">
+        <li class="list-group-item d-flex justify-content-between mt-2">
+          <h5 class="flex-grow-1">Demo Todo</h5>
+          <button class="btn btn-danger mr-2" onclick="RemoveItem(this)">
+            Remove
+          </button>
+          <button class="btn btn-success" onclick="EditItem(this)">
+            Edit
+          </button>
+        </li>
+      </ul>
+    </div>
+  </main>
 
-                <li class="list-group-item d-flex justify-content-between mt-2 ">
-                    <h5 class="flex-grow-1">Please Add The Items </h5>
-                    <button class="btn btn-danger mr-2" onclick="RemoveItem(this)">Remove</button>
-                    <button class="btn btn-success" onclick="EditItem(this)">Edit</button>
-                </li>
-
-            </ul>
-        </div>
-    </main>
-
-    <script src="List.js"></script>
 </body>
+<script src="List.js"></script>
 
 </html>

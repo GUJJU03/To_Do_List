@@ -3,14 +3,14 @@ addBtn.addEventListener("click", AddItems);
 
 const inputBox = document.getElementById("input-box");
 
-inputBox.addEventListener("keypress", function(event) {
+inputBox.addEventListener("keypress", function (event) {
     if (event.key === 'Enter') {
         AddItems();
     }
 });
 
 const ParentUi = document.getElementById("Parent");
-ParentUi.addEventListener("click", function(event) {
+ParentUi.addEventListener("click", function (event) {
     let target = event.target;
     if (target.classList.contains("btn-danger")) {
         RemoveItem(target.parentElement);
